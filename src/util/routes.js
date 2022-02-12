@@ -1,8 +1,9 @@
 const routes = {
-    dashboard:'/',
-    loactions:'/locations',
-    characters:'/characters',
-    episodes:'/episodes',
-}
+  dashboard: "/",
+  // fix typo
+  loactions: "/locations",
+  characters: "/characters",
+  episodes: "/episodes",
+};
 
 export default routes;

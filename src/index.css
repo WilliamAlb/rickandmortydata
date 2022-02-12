@@ -2,22 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
-.active button{
-    color: white !important;
+.active button {
+  /* 
+    !important is never the way to go with
+    in bigger projects it will create a mess 
+
+    the NavLink provides you isActive flag to handle this kind of things - 
+    for example
+
+     <NavLink to={routes.characters}>
+          {({ isActive }) => {
+            return (
+              <button
+                className={`border-0 p-2 rounded-lg border-amber-600 ${
+                  isActive ? "text-white" : "text-amber-600"
+                } transition-colors`}
+              >
+                Characters
+              </button>
+            );
+          }}
+        </NavLink>
+  */
+  color: white !important;
 }
 
 .loader {
-    border-top-color: #3498db;
-    -webkit-animation: spinner 1.5s linear infinite;
-    animation: spinner 1.5s linear infinite;
+  border-top-color: #3498db;
+  -webkit-animation: spinner 1.5s linear infinite;
+  animation: spinner 1.5s linear infinite;
+}
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
   }
-  
-  @-webkit-keyframes spinner {
-    0% { -webkit-transform: translate(-50%, -50%) rotate(0deg); }
-    100% { -webkit-transform: translate(-50%, -50%) rotate(360deg); }
+
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(360deg);
   }
-  
-  @keyframes spinner {
-    0% { transform: translate(-50%, -50%) rotate(0deg); }
-    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes spinner {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
   }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
