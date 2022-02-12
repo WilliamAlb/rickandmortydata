@@ -2,14 +2,11 @@ import { useState, useEffect } from "react";
 
 import Location from "./Location.jsx";
 
-const fetchBase = (url, options = {}) =>
-  fetch(`https://rickandmortyapi.com/api/${url}`, options);
-
 function Locations() {
   const [status, setStatus] = useState("loading");
   const [data, setData] = useState(null);
   useEffect(() => {
-    fetchBase("location")
+    fetchBase("https://rickandmortyapi.com/api/location")
       .then((res) => {
         return res.json();
       })
