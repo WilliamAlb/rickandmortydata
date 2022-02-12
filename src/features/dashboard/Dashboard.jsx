@@ -8,12 +8,12 @@ function Dashboard(){
 
     async function fetchData(idArray,type,setterFunction){
         setStatus('loading');
-    const responseArray = await Promise.all(idArray.map((id)=>{
-        return fetch(`https://rickandmortyapi.com/api/${type}/${id}`)
-            .then(res=>res.json())
-        }))
-        setterFunction(responseArray);
+        const responseArray = await Promise.all(idArray.map((id)=>{
+            return fetch(`https://rickandmortyapi.com/api/${type}/${id}`)
+                .then(res=>res.json())
+            }))
         setStatus('succeeded');
+        setterFunction(responseArray);
         return responseArray;
         
     }
@@ -23,9 +23,16 @@ function Dashboard(){
         const favoriteEpisodesIds = JSON.parse(window.localStorage.getItem('favoriteEpisodes'));
         const favoriteCharactersIds = JSON.parse(window.localStorage.getItem('favoriteCharacters'));
 
-        fetchData(favoriteCharactersIds,'character',setFavoriteCharacters);
-        fetchData(favoriteEpisodesIds,'episode',setFavoriteEpisodes);
-        fetchData(favoriteLocationsIds,'location',setFavoriteLocations);
+        if(favoriteCharactersIds){
+            fetchData(favoriteCharactersIds,'character',setFavoriteCharacters);            
+        }
+        if(favoriteEpisodesIds){
+            fetchData(favoriteEpisodesIds,'episode',setFavoriteEpisodes);
+        }
+        if(favoriteLocationsIds){
+            fetchData(favoriteLocationsIds,'location',setFavoriteLocations);
+        }
+        setStatus('succeeded');
     },[])
     
 
